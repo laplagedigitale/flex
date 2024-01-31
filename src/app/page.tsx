@@ -3,10 +3,6 @@
 import { FormEventHandler, useCallback, useEffect, useState } from "react";
 import { useAuth } from "react-oidc-context";
 
-const webhookUrl =
-  localStorage.getItem("webhook_url") ??
-  "https://automations.laplagedigitale.fr/webhook/new-flex";
-
 export default function Home() {
   const auth = useAuth();
   const [status, setStatus] = useState<"filling" | "submitting" | "submitted">(
@@ -30,8 +26,13 @@ export default function Home() {
       const formData = new FormData(e.currentTarget);
       const time = formData.get("time");
       setStatus("submitting");
+
+      const webhookUrl =
+        localStorage.getItem("webhook_url") ??
+        "https://automations.laplagedigitale.fr/webhook/new-flex";
+
       try {
-        await fetch("https://automations.laplagedigitale.fr/webhook/new-flex", {
+        await fetch(webhookUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

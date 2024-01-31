@@ -11,7 +11,7 @@ const oidcConfig = {
   client_id: "xB3OPRB5MoXRMSWeITHAcuAoJqfzFUBTNMaFComa",
   redirect_uri: new URL(
     "/callback",
-    typeof window === "undefined" ? undefined : window.location.origin,
+    typeof window === "undefined" ? "http://localhost/" : window.location.origin,
   ).toString(),
   scope: "openid profile email",
 };

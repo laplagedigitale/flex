@@ -1,6 +1,7 @@
 "use client";
 
 import "./globals.css";
+import Image from "next/image";
 import Logo from "./logo.png";
 
 import { AuthProvider } from "react-oidc-context";
@@ -8,7 +9,10 @@ import { AuthProvider } from "react-oidc-context";
 const oidcConfig = {
   authority: "https://id.laplagedigitale.fr/application/o/flex/",
   client_id: "xB3OPRB5MoXRMSWeITHAcuAoJqfzFUBTNMaFComa",
-  redirect_uri: new URL("/callback", typeof window !== "undefined" && window.location.origin).toString(),
+  redirect_uri: new URL(
+    "/callback",
+    typeof window === "undefined" ? undefined : window.location.origin,
+  ).toString(),
   scope: "openid profile email",
 };
 
@@ -27,7 +31,8 @@ export default function RootLayout({
         <body>
           <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-              <img
+              <Image
+                unoptimized
                 className="mx-auto h-14 w-auto"
                 src={Logo}
                 alt="La Plage Digitale"

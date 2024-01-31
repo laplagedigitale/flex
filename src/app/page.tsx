@@ -3,6 +3,10 @@
 import { FormEventHandler, useCallback, useEffect, useState } from "react";
 import { useAuth } from "react-oidc-context";
 
+const webhookUrl =
+  localStorage.getItem("webhook_url") ??
+  "https://automations.laplagedigitale.fr/webhook/new-flex";
+
 export default function Home() {
   const auth = useAuth();
   const [status, setStatus] = useState<"filling" | "submitting" | "submitted">(

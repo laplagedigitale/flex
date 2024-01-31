@@ -9,7 +9,7 @@ import { AuthProvider } from "react-oidc-context";
 const oidcConfig = {
   authority: "https://id.laplagedigitale.fr/application/o/flex/",
   client_id: "xB3OPRB5MoXRMSWeITHAcuAoJqfzFUBTNMaFComa",
-  redirect_uri: new URL("/callback", window.location.origin).toString(),
+  redirect_uri: "https://flex.laplagedigitale.fr/callback",
   scope: "openid profile email",
 };
 
